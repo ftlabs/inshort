@@ -1,17 +1,17 @@
 # FT Labs - Embellishr
 
-Interal application designed to help with the 'Word of the Year' feature.
+Base project containing the barebones files to get started with SAPI requests and FT SSO.
 ### Installation
 
-Install the dependencies and devDependencies and start the server.
+Install the dependencies and start the server. The server will watch for any changes made and automatically restart.
 
 ```sh
 $ npm install
 $ npm start
 ```
 
-In another tab, run the following command to have webpack watch the client files.
+For tests, run:
 
 ```sh
-$ npm run client-dev
+$ npm test
 ```
