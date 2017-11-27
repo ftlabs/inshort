@@ -5,9 +5,11 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const validateRequest = require('./helpers/check-token');
-const articles = require('./routes/articles');
+const summary = require('./routes/summary');
+const hbs = require('hbs');
 
 // view engine setup
+hbs.registerPartials(__dirname + '/views/partials');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
@@ -36,7 +38,7 @@ if (process.env.BYPASS_TOKEN !== 'true') {
 
 
 //Core Routes
-app.use('/articles', articles);
+app.use('/summary', summary);
 
 // ---
 

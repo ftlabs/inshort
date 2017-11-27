@@ -1,0 +1,16 @@
+body {
+    margin: 0;
+}
+
+small, p, span {
+    font-family: MetricWeb,sans-serif;
+  }
+
+.center {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.header-container {
+    margin-left:0;
+  }

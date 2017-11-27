@@ -4,7 +4,7 @@
   "description": "Base project used for quick setup with FT Api's",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "nodemon --inspect index.js",
     "test": "mocha ./test --recursive"
   },
   "repository": {
@@ -37,13 +37,15 @@
     "md5": "^2.2.1",
     "mocha": "^4.0.1",
     "node-fetch": "^1.6.3",
+    "node-summary": "^1.2.0",
     "rss": "^1.2.1",
-    "striptags": "^2.1.1",
+    "striptags": "^2.2.1",
     "uuid": "^3.0.1",
     "xml2js": "^0.4.17"
   },
   "devDependencies": {
-    "nodemon": "^1.12.1"
+    "nodemon": "^1.12.1",
+    "webpack": "^3.8.1"
   },
   "engines": {
     "node": "8.9.x"

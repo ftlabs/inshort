@@ -1,1 +1,55 @@
-<h1>Test Route 1 </h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://www.ft.com/__origami/service/build/v2/bundles/css?modules=o-buttons,o-grid@^4.3.5,o-loading@^2.1.1,o-header-services@^2.0.4,o-typography@^5.4.0,o-forms@^4.1.4,o-fonts@^3.0.3,o-labels@^3.0.1,o-techdocs@^7.0.5,o-overlay@^2.1.4" />
+    <link rel="stylesheet" href="/static/styles/core.css"/>
+    <title>Document</title>
+</head>
+<body>
+{{> header}}
+
+<div class="o-grid-container">
+	    <div class="o-grid-row">
+            <div data-o-grid-colspan="12">
+                <form class="o-forms" v-on:submit.prevent="fetchResults()">
+                    <div class="form-group">
+                        <br>
+                        <label class="o-forms__label" for="searchWord">After date</label>
+                        <input type="date"  class="o-forms__text" id="afterDate">
+                        <br><br>
+                        <label class="o-forms__label" for="searchWord">Before date</label>
+                        <input type="date" class="o-forms__text" id="beforeDate">
+                        <br><br>
+                        <label class="o-forms__label" for="searchWord">Summary method</label>
+                        <select placeholder="Select a summary method" id="summarySelect" data-size="10" class="o-forms__select">
+                                <option value="firstSentence">
+                                    First sentence
+                                </option>
+                                <option value="extractive">
+                                    Extractive summarization
+                                </option>
+                            </select>
+                    </div>
+                    <br>   
+                    <button type="button" class="o-buttons o-buttons--primary">Submit!</button>
+                </form>
+            </div>
+        </div>
+        <div class="o-grid-row">
+            <div data-o-grid-colspan="12">
+                <h5 class="o-typography-heading-level-5">Summarys</h5>
+                <p>Summarys go here</p>
+            </div>
+        </div>
+
+
+</div>
+
+<script type="javascript"  src="https://www.ft.com/__origami/service/build/v2/bundles/js?modules=o-buttons,o-grid@^4.3.5,o-header-services@^2.0.4,o-forms@^4.1.4,o-labels@^3.0.1,o-techdocs@^7.0.5,o-overlay@^2.1.4"></script>    
+</body>
+</html>
+
+
