@@ -23,6 +23,7 @@ app.use(requestLogger);
 
 // these routes do *not* have s3o
 app.use('/static', express.static('static'));
+app.use('/app', express.static('app'));
 
 const TOKEN = process.env.TOKEN;
 if (!TOKEN) {
@@ -42,9 +43,13 @@ app.use('/summary', summary);
 
 // ---
 
-app.use('/', (req, res) => {
-  res.render('index');
-})
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/app/dist/index.html'));
+});
+
+// app.use('/', (req, res) => {
+//   res.render('index');
+// })
 
 app.use((err, req, res, next) => {
   console.error(err.stack)

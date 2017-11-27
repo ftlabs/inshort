@@ -4,9 +4,8 @@ const CAPI_CONCURRENCE = (process.env.hasOwnProperty('CAPI_CONCURRENCE'))? proce
 const promiseParser = require('../helpers/xml2js-promise');
 const striptags = require('striptags');
 const pythonRunner = require('../helpers/python-runner');
-const debug = require('debug')(`Summary:`);
-
-
+const debug = require('debug')('modules:summary');
+const LOG_STYLES = require('../helpers/pretty-log');
 
 /**
  * @param {*} searchTerm 
@@ -62,8 +61,15 @@ function fetchItems(idArray) {
     return directly(CAPI_CONCURRENCE, itemPromisers);
 }
 
+/**
+ * 
+ * @param {*} id 
+ * @param {*} algorithm 
+ * @param {*} length 
+ */
 function extractiveSummarization(id, algorithm='lex-rank', length=5){
-    debug(`Performing an extractive summary using the ${algorithm} algorithm with a length of ${length}`)
+    console.log(LOG_STYLES.FG_MAGNETA, `Performing an extractive summary using the ${algorithm} algorithm with a length of ${length}`);
+
     return fetchItem(id).then(article => {
         const text = striptags(article.content).replace(/(\r\n|\n|\r)/gm,"");
         let command = `sumy ${algorithm} --length=${length} --format=plaintext --text='${text}'`;        

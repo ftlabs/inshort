@@ -2,3 +2,5 @@ node_modules/
 .env
 .DS_STORE
 package-lock.json
+app/dist/build.js
+app/dist/build.js.map
