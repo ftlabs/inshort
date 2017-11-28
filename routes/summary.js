@@ -2,21 +2,11 @@ const express = require('express');
 const router = express.Router();
 const Summary = require('../modules/Summary');
 
-router.get('/id/:id', (req, res, next) => {
+router.get('/sentence/:id', (req, res, next) => {
         Summary.extractFirstLine(req.params.id).then(articles => {
             res.json(articles);
         }).catch(e => {
             next(e);
-    })
-});
-
-
-
-router.get('/', (req, res, next) => {   
-    Summary.summarysForTimeRange(req.query.after, req.query.before).then(articleSummarys => {
-        res.json(articleSummarys);
-    }).catch(e => {
-        next(e);
     })
 });
 
@@ -31,6 +21,14 @@ router.get('/extractive/:id', (req, res, next) => {
     })
 });
 
+router.get('/', (req, res, next) => {   
+    Summary.summarysForTimeRange(req.query.after, req.query.before, 
+        Summary.extractiveSummarization, 'lsa', 5).then(articleSummarys => {
+        res.json(articleSummarys);
+    }).catch(e => {
+        next(e);
+    })
+});
 
 
 module.exports = router;
