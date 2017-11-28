@@ -57,7 +57,8 @@
                 </form>
             </div>
             <div data-o-grid-colspan="6">
-                <textarea rows="10" class="o-forms__textarea" size="40" v-bind="this.responseData">{{this.responseData}}</textarea>
+                <h4 class="o-typography-heading-level-4">JSON Response</h4>
+                <pre><code>{{this.responseData}}</code></pre>
             </div>
         </div>
         <span v-if="loading" class="o-loading o-loading--dark o-loading--small"></span>
@@ -65,7 +66,7 @@
             <div data-o-grid-colspan="12">
                 <h3 class="o-typography-heading-level-3">{{this.responseData.title}}</h3>
                 <h5 class="o-typography-heading-level-5">{{this.responseData.byline}}</h5>
-                <span>{{this.responseData.summary || this.responseData.content}}</span>
+                <pre>{{this.responseData.summary || this.responseData.content}}<pre>
             </div>
         </div>
 </div>

@@ -21,10 +21,9 @@ router.get('/extractive/:id', (req, res, next) => {
     })
 });
 
-
-
 router.get('/', (req, res, next) => {   
-    Summary.summarysForTimeRange(req.query.after, req.query.before).then(articleSummarys => {
+    Summary.summarysForTimeRange(req.query.after, req.query.before, 
+        Summary.extractiveSummarization, 'lsa', 5).then(articleSummarys => {
         res.json(articleSummarys);
     }).catch(e => {
         next(e);

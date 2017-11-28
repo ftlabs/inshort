@@ -26,6 +26,16 @@ export default {
     margin: 0 auto;
   }
 
+  pre {
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap; /* Opera */
+    white-space: -o-pre-wrap; /* Opera */
+    height: auto;
+    max-height: 200px;
+    overflow: auto;
+    white-space: pre-wrap;
+}
+
   small, p, span {
     font-family: MetricWeb,sans-serif;
   }

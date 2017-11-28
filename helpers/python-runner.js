@@ -8,7 +8,7 @@ function runPython(command) {
                 return reject(response.stderr)
             }
             resolve(response.stdout);
-        })
+        }).catch(error => reject(error))
     });
 }
 
