@@ -10,8 +10,8 @@ $ npm install
 $ npm start
 ```
 
-Sumy, a python library, is also required for extractive summary. To install this on your system, use 
-To install pip (Python package manager) on a mac, you can use 'easy_install pip'
+Sumy, a python library, is also required for extractive summary. To install this on your system, you can use pip. 
+To install pip (Python package manager) on a mac, you can use 'easy_install pip' and then run:
 
 ```sh
 pip install sumy
