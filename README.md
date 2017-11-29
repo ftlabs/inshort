@@ -1,4 +1,4 @@
-# FT Labs - template_SAPI
+# FT Labs - inshort
 
 Base project containing the barebones files to get started with SAPI requests and FT SSO.
 ### Installation
