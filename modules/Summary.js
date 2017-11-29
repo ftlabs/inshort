@@ -61,6 +61,7 @@ function fetchItem(id) {
 /**
  * Returns a number of sapiObj based on the given article ID's (utilizing directly)
  * @param {*} id - Article ID 
+ * @private
  */
 function fetchItems(idArray, summaryMethod, ...params) {
     params = params.pop();
@@ -90,7 +91,6 @@ function extractiveSummarization(id, algorithm='lex-rank', length=2){
             article.summary = response            
             article = appendStatistics(article);
             return article;
-
         }).catch(error => {
             console.log(error);
             article.summary = null;
@@ -99,7 +99,10 @@ function extractiveSummarization(id, algorithm='lex-rank', length=2){
     })
 }
 
-
+/**
+ * Adds reading statistics to the article object.
+ * @param {*} article 
+ */
 function appendStatistics(article) {
     const contentWordCount = article.content.split(" ").length;
     const summaryWordCount = article.summary.split(" ").length;
@@ -108,7 +111,6 @@ function appendStatistics(article) {
     let summaryReadTime = Math.round(summaryWordCount / AVERAGE_READ_TIME);
     if (summaryReadTime < 1) 
         summaryReadTime = "Less than a"
-
     article['reading_time'] = `${readTime} Minutes`;
     article['summary_reading_time'] = `${summaryReadTime} minute`;
     article['deduction'] = `${Math.round(deduction)}%`;
@@ -139,6 +141,7 @@ function extractFirstLine(id) {
     return extractFirstParagraph(id).then(article => {
         let paragraph = article.summary; 
         article.summary =  paragraph.split('.')[0]
+        article = appendStatistics(article);
         return article;
     });
 }
