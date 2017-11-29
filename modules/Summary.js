@@ -43,7 +43,7 @@ function summarysForTimeRange(after, before, summaryMethod, ...params) {
     })
 }
 
-/*  *
+/**
  * Returns a sapiObj based on the given article ID
  * @param {*} id - Article ID 
  */
@@ -62,6 +62,7 @@ function fetchItem(id) {
 /**
  * Returns a number of sapiObj based on the given article ID's (utilizing directly)
  * @param {*} id - Article ID 
+ * @private
  */
 function fetchItems(idArray, summaryMethod, ...params) {
     params = params.pop();
@@ -91,7 +92,6 @@ function extractiveSummarization(id, algorithm='lex-rank', length=2){
             article.summary = response            
             article = appendStatistics(article);
             return article;
-
         }).catch(error => {
             console.log(error);
             article.summary = null;
