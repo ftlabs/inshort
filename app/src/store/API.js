@@ -12,7 +12,7 @@ export default class API {
 
     firstSentenceSummary(id) {
         let urlComponent = encodeURIComponent(id);
-        let url = `${BASE_URL}/sentence/${urlComponent}`;        
+        let url = `${BASE_URL}/first-sentence/${urlComponent}`;        
         return fetch(url, {
             credentials: 'include'
         }).then(resp => resp.json())

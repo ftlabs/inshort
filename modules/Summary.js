@@ -146,9 +146,30 @@ function extractFirstLine(id) {
     });
 }
 
+/**
+ * Given an ID, performs all summary methods on a given article
+ * @param {*} id 
+ */
+function extractAllSummarys(id) {
+   return Promise.all([
+       extractFirstLine(id),
+       extractFirstParagraph(id),
+       extractiveSummarization(id)
+   ]).then(([firstLine, firstParagraph, extractive]) => {
+        return {
+            'first-line': firstLine,
+            'first-paragraph': firstParagraph,
+            'extractive': extractive
+        }
+   })
+}
+
+
+
 module.exports = {
     extractFirstLine,
     extractFirstParagraph,
     summarysForTimeRange,
-    extractiveSummarization
+    extractiveSummarization,
+    extractAllSummarys
 }
