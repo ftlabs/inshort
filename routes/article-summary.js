@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const Summary = require('../modules/Summary');
+const ArticleSummary = require('../modules/ArticleSummary');
 
 /**
- * Endpoints for experiments with different summary methodologies, 
+ * Endpoints for experiments with different ArticleSummary methodologies, 
  * not meant for production.
  */
 
- //All summary methods list for a given article ID.
+ //All ArticleSummary methods list for a given article ID.
 
  //
 
@@ -18,16 +18,16 @@ const Summary = require('../modules/Summary');
 router.get('/range/first-sentence', (req, res, next) => {   
     const algorithm = req.query.algorithm
     const lines = req.query.lines
-    Summary.summarysForTimeRange(req.query.after, req.query.before, 
-        Summary.extractFirstLine).then(articleSummarys => {
-        res.json(articleSummarys);
+    ArticleSummary.ArticleSummarysForTimeRange(req.query.after, req.query.before, 
+        ArticleSummary.extractFirstLine).then(articleArticleSummarys => {
+        res.json(articleArticleSummarys);
     }).catch(e => {
         next(e);
     })
 });
 
 router.get('/first-sentence/:id', (req, res, next) => {
-        Summary.extractFirstLine(req.params.id).then(articles => {
+        ArticleSummary.extractFirstLine(req.params.id).then(articles => {
             res.json(articles);
         }).catch(e => {
             next(e);
@@ -36,15 +36,15 @@ router.get('/first-sentence/:id', (req, res, next) => {
 
 
 /**
- * Extractive summarys
+ * Extractive ArticleSummarys
  */
 
 router.get('/range/extractive', (req, res, next) => {   
     const algorithm = req.query.algorithm
     const lines = req.query.lines
-    Summary.summarysForTimeRange(req.query.after, req.query.before, 
-        Summary.extractiveSummarization, algorithm, lines).then(articleSummarys => {
-        res.json(articleSummarys);
+    ArticleSummary.ArticleSummarysForTimeRange(req.query.after, req.query.before, 
+        ArticleSummary.extractiveSummarization, algorithm, lines).then(articleArticleSummarys => {
+        res.json(articleArticleSummarys);
     }).catch(e => {
         next(e);
     })
@@ -54,8 +54,8 @@ router.get('/extractive/:id', (req, res, next) => {
     const id = req.params.id;
     const algorithm = req.query.algorithm
     const lines = req.query.lines
-    Summary.extractiveSummarization(id, algorithm, lines).then(summary => {
-        res.json(summary);
+    ArticleSummary.extractiveSummarization(id, algorithm, lines).then(ArticleSummary => {
+        res.json(ArticleSummary);
     }).catch(e => {
         next(e);
     })
@@ -65,10 +65,10 @@ router.get('/extractive/:id', (req, res, next) => {
  * ----
  */
 
-//Display all summarys
+//Display all ArticleSummarys
 router.get('/:id', (req, res, next) => {   
     const id = req.params.id;
-    Summary.extractAllSummarys(id).then(summaries => {
+    ArticleSummary.extractAllSummarys(id).then(summaries => {
         res.json(summaries);
     }).catch(e => {
         next(e);

@@ -5,7 +5,9 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const validateRequest = require('./helpers/check-token');
-const summary = require('./routes/summary');
+const articleSummary = require('./routes/article-summary');
+const timeline = require('./routes/timeline');
+const sentiment = require('./routes/sentiment');
 const hbs = require('hbs');
 
 // view engine setup
@@ -39,8 +41,9 @@ if (process.env.BYPASS_TOKEN !== 'true') {
 
 
 //Core Routes
-app.use('/summary', summary);
-
+app.use('/summary', articleSummary);
+app.use('/timeline', timeline);
+app.use('/sentiment', sentiment);
 // ---
 
 app.get('/*', (req, res) => {

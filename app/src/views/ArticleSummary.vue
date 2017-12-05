@@ -7,12 +7,6 @@
                         <br>
                         <label class="o-forms__label" for="articleID">Article ID</label>
                         <input v-model="articleID" class="o-forms__text" placeholder="Article ID"/>
-                        <!-- <label class="o-forms__label" for="searchWord">After date</label>
-                        <input type="date" v-model="afterDate" class="o-forms__text" id="afterDate">
-                        <br><br>
-                        <label class="o-forms__label" for="searchWord">Before date</label>
-                        <input type="date" v-model="beforeDate" class="o-forms__text" id="beforeDate">
-                        <br><br> -->
                         <br>
                         <label class="o-forms__label" for="summarySelect">Summary method</label>
                         <select placeholder="Select a summary method" v-model="summaryMethod" id="summarySelect" data-size="10" class="o-forms__select">

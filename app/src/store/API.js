@@ -1,4 +1,4 @@
-const BASE_URL = "/summary/";
+const BASE_URL = "/summary";
 
 export default class API {
 
@@ -10,6 +10,17 @@ export default class API {
         }
     }
 
+    fetchTimeline(searchTerm, beforeDate, afterDate) {
+        beforeDate = beforeDate.split('-');
+        beforeDate = `${beforeDate[2]}-${beforeDate[1]}-${beforeDate[0]}` //Convert to uk format
+        afterDate = afterDate.split('-')
+        afterDate = `${afterDate[2]}-${afterDate[1]}-${afterDate[0]}`
+        let url = `/timeline?search=${searchTerm}&before=${beforeDate}&after=${afterDate}`
+        return fetch(url, {
+            credentials: 'include'
+        }).then(resp => resp.json())
+    }
+
     firstSentenceSummary(id) {
         let urlComponent = encodeURIComponent(id);
         let url = `${BASE_URL}/first-sentence/${urlComponent}`;        
@@ -19,7 +30,6 @@ export default class API {
     }
 
     extractiveSummary(id, extractiveData) {
-        console.log(extractiveData)
         let urlComponent = encodeURIComponent(id);
         const algorithm = extractiveData.algorithm;
         const lines = extractiveData.lines != "" ? extractiveData.lines : 5;

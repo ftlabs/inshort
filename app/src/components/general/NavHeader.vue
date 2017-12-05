@@ -14,7 +14,10 @@
 		<div class="o-header-services__container header-container">
 			<ul class="o-header-services__nav-list">
 				<li class="o-header-services__nav-item">
-						<router-link class="o-header-services__nav-link" to="/">Article Summary (ID)</router-link>
+						<router-link class="o-header-services__nav-link" to="/">Article summary experiments</router-link>
+				</li>
+				<li class="o-header-services__nav-item">
+						<router-link class="o-header-services__nav-link" to="/time-line">Timeline experiments</router-link>
 				</li>
 				<li class="o-header-services__nav-item">
 					<router-link class="o-header-services__nav-link" to="/docs">Docs</router-link>

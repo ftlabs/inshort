@@ -3,6 +3,7 @@ import App from './App.vue'
 import store from './store/store'
 import VueRouter from 'vue-router'
 import ArticleSummary from './views/ArticleSummary'
+//import TimelineView from './views/TimelineView'
 
 Vue.use(VueRouter)
 const router = new VueRouter({
