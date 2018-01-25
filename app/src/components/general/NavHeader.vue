@@ -16,18 +16,12 @@
 				<li class="o-header-services__nav-item">
 						<router-link class="o-header-services__nav-link" to="/">Article summary experiments</router-link>
 				</li>
-				<li class="o-header-services__nav-item">
-						<router-link class="o-header-services__nav-link" to="/time-line">Timeline experiments</router-link>
-				</li>
-				<li class="o-header-services__nav-item">
-					<router-link class="o-header-services__nav-link" to="/docs">Docs</router-link>
-				</li>
 			</ul>
 		</div>
 	</div>
 </header>
 </template>
-<style>
+<style scoped>
     .header-container {
       margin-left:0;
     }

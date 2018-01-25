@@ -5,14 +5,12 @@ const Sentiment = require('../modules/Sentiment');
 
 
 router.get('/:id', (req, res, next) => {   
-    Sentiment.sentimentForArticle(req.params.id).then(score => {
+    Sentiment.fetchSentimentForArticle(req.params.id).then(score => {
         res.json(score);
     }).catch(e => {
         next(e);
     })
 });
-
-
 
 
 module.exports = router;

@@ -14,8 +14,11 @@ const util = require('../helpers/util');
  * @param {*} params 
  */
 function createTimeline(searchTerm, after, before, summaryMethod=ArticleSummary.extractFirstLine) {
+    let afterTime = util.parseUKdate(after)
+    let beforeTime = util.parseUKdate(before)
+    let daysBetween = util.daysBetween(afterTime, beforeTime)
     const timeline = {
-        title: createTitle(after,before),
+        title: createTitle(after, before),
         events: []
     };
     return ArticleSummary.articlesForSearchTerm(searchTerm, after, before, summaryMethod).then(articles => {
@@ -65,7 +68,8 @@ function createEvent(article) {
         text: {
             headline: article.title,
             text: article.summary
-        }
+        },
+        id: article.id
     }
 }
 

@@ -8,6 +8,8 @@ const validateRequest = require('./helpers/check-token');
 const articleSummary = require('./routes/article-summary');
 const timeline = require('./routes/timeline');
 const sentiment = require('./routes/sentiment');
+const topic = require('./routes/topic-summary')
+const infographic = require('./routes/infographic')
 const hbs = require('hbs');
 
 // view engine setup
@@ -38,12 +40,12 @@ if (process.env.BYPASS_TOKEN !== 'true') {
   app.use(validateRequest);
 }
 
-
-
 //Core Routes
 app.use('/summary', articleSummary);
 app.use('/timeline', timeline);
 app.use('/sentiment', sentiment);
+app.use('/topic', topic)
+app.use('/infographic', infographic);
 // ---
 
 app.get('/*', (req, res) => {
