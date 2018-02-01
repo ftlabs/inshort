@@ -1,7 +1,14 @@
 const BASE_URL = "/summary";
+import util from '../util';
 
 export default class API {
-
+    
+    /**
+     * Generic Fetch for different
+     * @param {*} id 
+     * @param {*} summaryMethod 
+     * @param {*} extractiveData 
+     */
     fetch(id, summaryMethod, extractiveData) {
         const returnMethod = null
         switch (summaryMethod) {
@@ -10,16 +17,40 @@ export default class API {
         }
     }
 
+    fetchTopicSummary(searchTerm, beforeDate, afterDate) {
+        beforeDate = util.convertToUkDate(beforeDate);
+        afterDate = util.convertToUkDate(afterDate);
+        const url = `/topic/?search=${searchTerm}&before=${beforeDate}&after=${afterDate}`
+        return fetch(url, {
+            credentials: 'include'
+        }).then(resp => resp.json())
+    }
+
+    fetchInfographicSummary(searchTerm, beforeDate, afterDate) {
+        beforeDate = util.convertToUkDate(beforeDate);
+        afterDate = util.convertToUkDate(afterDate);
+        const url = `/infographic?search=${searchTerm}&before=${beforeDate}&after=${afterDate}`
+        return fetch(url, {
+            credentials: 'include'
+        }).then(resp => resp.json())
+    }
+
+    fetchTopicImageSummary(searchTerm, beforeDate, afterDate) {
+        beforeDate = util.convertToUkDate(beforeDate);
+        afterDate = util.convertToUkDate(afterDate);
+        const url = `/topic/image?search=${searchTerm}&before=${beforeDate}&after=${afterDate}`
+        return fetch(url, {
+            credentials: 'include'
+        }).then(resp => resp.json())
+    }
+    
     fetchTimeline(searchTerm, beforeDate, afterDate) {
-        beforeDate = beforeDate.split('-');
-        beforeDate = `${beforeDate[2]}-${beforeDate[1]}-${beforeDate[0]}` //Convert to uk format
-        afterDate = afterDate.split('-')
-        afterDate = `${afterDate[2]}-${afterDate[1]}-${afterDate[0]}`
         let url = `/timeline?search=${searchTerm}&before=${beforeDate}&after=${afterDate}`
         return fetch(url, {
             credentials: 'include'
         }).then(resp => resp.json())
     }
+
 
     firstSentenceSummary(id) {
         let urlComponent = encodeURIComponent(id);
@@ -37,6 +68,12 @@ export default class API {
         return fetch(url, {
             credentials: 'include'
         }).then(resp => resp.json())
+    }
+
+    wikipediaSummary(title) {
+        let urlComponent = encodeURIComponent(title);  
+        let url = `topic/wikipedia?search=${urlComponent}`;
+        return fetch(url).then(resp => resp.json());
     }
 
 } 

@@ -14,21 +14,49 @@ const sentiment = require('sentiment');
  * returning a score object
  * @param {*} id 
  */
-function sentimentForArticle(id) {
-    return ArticleSummary.fetchItem(id).then(resp => {
-        const title = resp.title;
-        const standfirst = resp.standfirst;
-        const score = sentiment(`${title} - ${standfirst}`);
-        const emoji = score == 0 ? '😐' : (score > 0 ? '😀' : '😟');
-        return {
-            title,
-            standfirst,
-            score,
-            emoji
-        }
-    })
+function fetchSentimentForArticle(id) {
+    return Article.fetchItem(id).then(resp => sentimentForArticle(resp));
+}
+
+/**
+ * Given an article object, performs sentiment analysis
+ * @param {*} article
+ * @param {*} extensive - If true, will perform sentiment analysis on the content.
+ */
+function sentimentForArticle(article, extensive=false) {
+    const title = article.title;
+    const standfirst = article.standfirst;
+    let score;
+    if(extensive) {
+        score = sentiment(article.content)
+    }
+    else {
+        score = sentiment(`${title} - ${standfirst}`);
+    }
+    const genre = article.genre
+    return {
+        title,
+        standfirst,
+        genre,
+        score,
+    }
+}
+
+/**
+ * Returns the overall sentiment for a set of articles
+ * @param {*} articles 
+ */
+function sentimentForArticles(articles) {
+    let sentimentTotal = 0;
+    for(let article of articles) {
+        let articleSentiment = sentimentForArticle(article).score;
+        sentimentTotal += articleSentiment.score
+    }
+    return Math.round(sentimentTotal / articles.length);
 }
 
 module.exports = {
-    sentimentForArticle
+    sentimentForArticle,
+    sentimentForArticles,
+    fetchSentimentForArticle
 }

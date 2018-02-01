@@ -39,8 +39,10 @@
     "mocha": "^4.0.1",
     "node-fetch": "^1.6.3",
     "node-summary": "^1.2.0",
+    "reveal.js": "^3.6.0",
     "rss": "^1.2.1",
     "sentiment": "^4.1.0",
+    "stopword": "^0.1.9",
     "striptags": "^2.2.1",
     "uuid": "^3.0.1",
     "vue": "^2.4.4",
@@ -48,6 +50,7 @@
     "vue-multiselect": "^2.0.6",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
+    "wordcloud": "^1.0.6",
     "xml2js": "^0.4.17"
   },
   "devDependencies": {
